@@ -4,16 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderbarComponent } from './components/headerbar/headerbar.component';
-import { TerminalComponent } from './views/terminal/terminal.component';
-import { RegularComponent } from './views/regular/regular.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderbarComponent,
-    TerminalComponent,
-    RegularComponent,
-  ],
+  declarations: [AppComponent, HeaderbarComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

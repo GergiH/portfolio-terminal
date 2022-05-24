@@ -8,10 +8,16 @@ export class SharedService {
 
   constructor() {
     this.globals = {
-      links: {
-        linkedIn: '',
-        gitHub: '',
-      },
+      links: [
+        {
+          linkUrl: 'https://www.linkedin.com/in/gergi-hrv/',
+          linkText: 'LinkedIn',
+        },
+        {
+          linkUrl: 'https://github.com/GergiH',
+          linkText: 'GitHub',
+        },
+      ],
     };
   }
 }
