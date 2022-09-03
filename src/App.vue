@@ -1,6 +1,7 @@
 <template>
   <HeaderPart />
   <TerminalView v-if="isTerminalView" />
+  <GraphicalView v-if="!isTerminalView" />
 
   <button class="layout-switcher" :onclick="toggleView" v-html="buttonIcon" />
 </template>
@@ -8,12 +9,14 @@
 <script>
 import { ref } from 'vue';
 import HeaderPart from './components/HeaderPart.vue';
+import GraphicalView from './components/GraphicalView.vue';
 import TerminalView from './components/TerminalView.vue';
 
 export default {
   name: 'App',
   components: {
     HeaderPart,
+    GraphicalView,
     TerminalView
   },
   setup() {
