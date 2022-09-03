@@ -37,9 +37,7 @@ const COMMANDNAMES = {
 
 export default {
   name: 'TerminalView',
-  props: {
-    msg: String
-  },
+  props: {},
   setup() {
     const command = ref('');
     const lines = ref([]);

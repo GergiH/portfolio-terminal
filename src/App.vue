@@ -1,13 +1,17 @@
 <template>
+  <HeaderPart />
+
   <TerminalView />
 </template>
 
 <script>
+import HeaderPart from './components/HeaderPart.vue'
 import TerminalView from './components/TerminalView.vue'
 
 export default {
   name: 'App',
   components: {
+    HeaderPart,
     TerminalView
   }
 }
