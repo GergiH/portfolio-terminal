@@ -1,6 +1,4 @@
 <template>
-  <button>Switch to graphical view</button>
-
   <div id="terminal-window">
     <div class="top">
         <div class="btns">
@@ -109,7 +107,7 @@ export default {
       handleCommand,
       lines,
       prompt
-    }
+    };
   }
 }
 </script>
@@ -135,6 +133,7 @@ textarea:focus, input:focus{
   border-radius: 10px 10px 0 0;
   color: #cccccc;
   font-family: Hack, "Cascadia Code", Consolas, "SF Mono", "DejaVu Sans Mono", monospace;
+  height: 400px;
   margin: auto;
   text-align: left;
   width: 900px;
@@ -174,6 +173,7 @@ textarea:focus, input:focus{
 }
 
 #terminal-window > .body {
+  overflow: hidden;
   padding: 8px;
 }
 

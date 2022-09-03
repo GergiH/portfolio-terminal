@@ -1,4 +1,6 @@
 <template>
+  <div class="header-background"></div>
+
   <div class="image-container">
     <img src="../assets/portrait.jpg" />
   </div>
@@ -13,7 +15,7 @@ export default {
   setup() {
 
     return {
-    }
+    };
   }
 }
 </script>
@@ -25,14 +27,32 @@ img {
   width: inherit;
 }
 
+.header-background {
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  border-bottom-left-radius: 55%;
+  border-bottom-right-radius: 55%;
+  height: 150px;
+  left: 0px;
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -10;
+}
+
 .image-container {
   background: #ffffff;
   border-radius: 50%;
   box-shadow: 4px 4px 14px -2px #7a7a7a;
-  padding: 10px;
+  left: 40px;
+  padding: 6px;
+  position: absolute;
   height: 140px;
+  top: 40px;
   width: 140px;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
+  z-index: -5;
 }
 </style>
