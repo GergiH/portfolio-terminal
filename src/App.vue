@@ -1,15 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <TerminalView />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TerminalView from './components/TerminalView.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TerminalView
   }
 }
 </script>
@@ -19,8 +18,13 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
   text-align: center;
-  color: #2c3e50;
+  color: #1b1a20;
   margin-top: 60px;
+}
+
+.keep-spaces {
+  white-space: pre-wrap;
 }
 </style>
