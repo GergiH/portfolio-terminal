@@ -8,7 +8,13 @@
   </Transition>
 
   <Transition>
-    <TerminalView v-if="isTerminalView" :commands="commands" :command-names="COMMANDNAMES" />
+    <TerminalView
+      v-if="isTerminalView"
+      :commands="commands"
+      :command-names="COMMANDNAMES"
+      :inputted-commands="inputtedCommands"
+      @setInputtedCommands="setInputtedCommands"
+    />
   </Transition>
   <Transition>
     <GraphicalView v-if="!isTerminalView" :commands="commands" />
@@ -87,10 +93,17 @@ export default {
         [LINKNAMES.linkedin, 'https://www.linkedin.com/in/gergi-hrv/']
       ]
     };
+    const inputtedCommands = ref([]);
 
     const toggleView = () => {
       isTerminalView.value = !isTerminalView.value;
       handleButtonIcon();
+    };
+
+    const setInputtedCommands = (command) => {
+      if (inputtedCommands.value && !inputtedCommands.value.find(elem => elem === command)) {
+        inputtedCommands.value.push(command);
+      }
     };
 
     const handleButtonIcon = () => {
@@ -107,7 +120,9 @@ export default {
       buttonIcon,
       commands,
       COMMANDNAMES,
+      inputtedCommands,
       isTerminalView,
+      setInputtedCommands,
       toggleView
     };
   }

@@ -18,7 +18,15 @@
 
       <div class="command-line-container">
         <div id="prompt" class="keep-spaces">{{ prompt }}</div>
-        <input id="command-line" v-model="command" @keyup.enter="handleCommand" autofocus autocomplete="off" />
+        <input
+          id="command-line"
+          v-model="command"
+          @keyup.enter="handleCommand"
+          @keyup.up="handleCommandHistory(false)"
+          @keyup.down="handleCommandHistory(true)"
+          autocomplete="off"
+          autofocus
+        />
       </div>
     </div>
   </div>
@@ -36,14 +44,16 @@ const convertDateToString = (date) => {
 export default {
   name: 'TerminalView',
   props: {
-    commands: {},
-    commandNames: {}
+    commands: Object,
+    commandNames: Object,
+    inputtedCommands: Object
   },
-  setup(props) {
+  setup(props, context) {
     const command = ref('');
     const lines = ref([]);
     const prompt = ref(`${convertDateToString(new Date())} ${PROMPTPATH}`);
     const terminalBody = ref(null);
+    let cmdIdx = ref(0);
 
     const getPrompt = () => {
       return `${convertDateToString(new Date())} ${PROMPTPATH}`;
@@ -59,10 +69,29 @@ export default {
       lines.value.push('<br/>');
     };
 
+    const handleCommandHistory = (isDownArrow) => {
+      console.log(props.inputtedCommands.value);
+      if (isDownArrow) {
+        cmdIdx.value = cmdIdx.value === props.inputtedCommands.value.length - 1
+          ? cmdIdx.value
+          : cmdIdx.value++;
+      } else {
+        cmdIdx.value = cmdIdx.value === 0
+          ? cmdIdx.value
+          : cmdIdx.value--;
+      }
+
+      command.value = props.inputtedCommands.value[cmdIdx];
+    };
+
     const handleCommand = async () => {
       await setContentAsync();
       prompt.value = getPrompt();
-      command.value = "";
+
+      // Handle the list of commands in the App component, so we always have the history
+      context.emit('setInputtedCommands', command.value);
+
+      command.value = '';
 
       terminalBody.value.scrollTop = terminalBody.value.scrollHeight;
     };
@@ -112,6 +141,7 @@ export default {
       command,
       getPrompt,
       handleCommand,
+      handleCommandHistory,
       lines,
       prompt,
       terminalBody
