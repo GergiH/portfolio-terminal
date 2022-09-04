@@ -1,7 +1,12 @@
 <template>
-  <HeaderPart />
-  <TerminalView v-if="isTerminalView" commands="commands" COMMANDNAMES="COMMANDNAMES" />
-  <GraphicalView v-if="!isTerminalView" commands="commands" COMMANDNAMES="COMMANDNAMES" />
+  <HeaderPart :is-visible="isTerminalView" />
+
+  <Transition>
+    <TerminalView v-if="isTerminalView" :commands="commands" :command-names="COMMANDNAMES" />
+  </Transition>
+  <Transition>
+    <GraphicalView v-if="!isTerminalView" :commands="commands" />
+  </Transition>
 
   <button class="layout-switcher" :onclick="toggleView" v-html="buttonIcon" />
 </template>
@@ -65,6 +70,7 @@ export default {
     return {
       buttonIcon,
       commands,
+      COMMANDNAMES,
       isTerminalView,
       toggleView
     };
@@ -87,6 +93,16 @@ html {
   text-align: center;
   color: #1b1a20;
   margin-top: 60px;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 .keep-spaces {

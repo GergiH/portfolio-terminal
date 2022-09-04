@@ -33,7 +33,7 @@ export default {
   name: 'TerminalView',
   props: {
     commands: {},
-    COMMANDNAMES: {}
+    commandNames: {}
   },
   setup(props) {
     const command = ref('');
@@ -61,30 +61,30 @@ export default {
     };
 
     const handleInvalidCommand = () => {
-      return `'${command.value}' is an invalid command, use ${props.COMMANDNAMES.help} to get all valid commmands.`;
+      return `'${command.value}' is an invalid command, use ${props.commandNames.help} to get all valid commmands.`;
     };
 
     const setContent = () => {
       lines.value.push(`<span class="keep-spaces">${getPrompt()}</span><span>${command.value}</span>`);
 
       switch (command.value) {
-        case props.COMMANDNAMES.about:
+        case props.commandNames.about:
           lines.value.push(props.commands.about);
           break;
-        case props.COMMANDNAMES.career:
+        case props.commandNames.career:
           lines.value.push(props.commands.career);
           break;
-        case props.COMMANDNAMES.clear:
+        case props.commandNames.clear:
           lines.value = [];
           // setInitialLines();
           break;
-        case props.COMMANDNAMES.help:
+        case props.commandNames.help:
           for (const description of props.commands.help)
           {
             lines.value.push(`<li><span class="help-command">${description[0]}</span> - ${description[1]}</li>`);
           }
           break;
-        case props.COMMANDNAMES.links:
+        case props.commandNames.links:
           lines.value.push(props.commands.links);
           break;
         case '':

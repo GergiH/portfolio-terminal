@@ -1,20 +1,25 @@
 <template>
   <div class="header-background"></div>
 
-  <div class="image-container">
-    <img src="../assets/portrait.jpg" />
-  </div>
+  <Transition>
+    <div class="image-container" v-if="visible">
+      <img src="../assets/portrait.jpg" />
+    </div>
+  </Transition>
 </template>
 
 <script>
+import { toRef } from '@vue/reactivity';
 export default {
   name: 'HeaderPart',
   props: {
-    msg: String
+    isVisible: Boolean
   },
-  setup() {
+  setup(props) {
+    const visible = toRef(props, 'isVisible');
 
     return {
+      visible
     };
   }
 }
