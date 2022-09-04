@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const COMMANDNAMES = {
   about: 'about',
@@ -64,6 +64,16 @@ export default {
       return new Date().toLocaleString() + PROMPTPATH;
     };
 
+    // First few lines, also explaining the 'help' command
+    const setInitialLines = () => {
+      lines.value.push('Interactive terminal, made by');
+      lines.value.push(String.raw`<span class="keep-spaces">_  _ ____ ____ _  _ ____ ___ _  _    ____ ____ ____ ____ ____ _    _   _ </span>`);
+      lines.value.push(String.raw`<span class="keep-spaces">|__| |  | |__/ |  | |__|  |  |__|    | __ |___ |__/ | __ |___ |     \_/  </span>`);
+      lines.value.push(String.raw`<span class="keep-spaces">|  | |__| |  \  \/  |  |  |  |  |    |__] |___ |  \ |__] |___ |___   |   </span>`);
+      lines.value.push('For available commands use \'<span class="help-command">help</span>\'');
+      lines.value.push('<br/>');
+    };
+
     const handleCommand = () => {
       setContent();
       prompt.value = getPrompt();
@@ -86,6 +96,7 @@ export default {
           break;
         case COMMANDNAMES.clear:
           lines.value = [];
+          // setInitialLines();
           break;
         case COMMANDNAMES.help:
           for (const description of commands.help)
@@ -104,6 +115,10 @@ export default {
           break;
       }
     };
+
+    onMounted(() => {
+      setInitialLines();
+    })
 
     return {
       command,

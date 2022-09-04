@@ -73,7 +73,7 @@ button {
   background-color: #ab98dd;
   border-radius: 6px;
   border-width: 0;
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-shadow: 0px 0px 6px -2px #242424;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -106,7 +106,7 @@ button:focus {
 
 .layout-switcher {
   position: absolute;
-  right: 30px;
-  top: 15px;
+  right: 40px;
+  top: 10px;
 }
 </style>
