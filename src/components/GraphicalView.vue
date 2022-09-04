@@ -23,11 +23,13 @@
       <section id="links">
         <h2><a href="#links" :onclick="hideImage">Links</a></h2>
         <div class="section-content">
+          <div>
           <ul class="graphical-ul" v-if="props.commands">
             <li v-for="link in props.commands.links" :key="link[0]">
               {{ link[0] }} - <a :href="link[1]" target="_blank">{{ link[1] }}</a>
             </li>
           </ul>
+        </div>
         </div>
       </section>
     </div>

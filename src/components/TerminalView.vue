@@ -12,7 +12,7 @@
     </div>
 
     <div class="body" ref="terminalBody">
-      <ul>
+      <ul class="terminal-ul">
         <li v-for="(line, index) in lines" :key="line + index" v-html="line" />
       </ul>
 
