@@ -18,7 +18,7 @@
 
       <div class="command-line-container">
         <div id="prompt" class="keep-spaces">{{ prompt }}</div>
-        <input id="command-line" v-model="command" @keyup.enter="handleCommand" autofocus />
+        <input id="command-line" v-model="command" @keyup.enter="handleCommand" autofocus autocomplete="off" />
       </div>
     </div>
   </div>
@@ -86,13 +86,14 @@ export default {
             // setInitialLines();
             break;
           case props.commandNames.help:
-            for (const description of props.commands.help)
-            {
+            for (const description of props.commands.help) {
               lines.value.push(`<li><span class="help-command">${description[0]}</span> - ${description[1]}</li>`);
             }
             break;
           case props.commandNames.links:
-            lines.value.push(props.commands.links);
+            for (const link of props.commands.links) {
+              lines.value.push(`<li>${link[0]} - <a href="${link[1]}" target="_blank">${link[1]}</a></li>`);
+            }
             break;
           case '':
           case undefined:

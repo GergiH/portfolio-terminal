@@ -33,6 +33,26 @@ const COMMANDNAMES = {
   links: 'links'
 };
 
+const LINKNAMES = {
+  github: 'GitHub',
+  linkedin: 'LinkedIn'
+};
+
+const calculateYears = (fromDate) => {
+  const currentDate = new Date();
+  const diffDate = currentDate - fromDate;
+  const ageDate = new Date(diffDate);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
+const calculateAge = () => {
+  return calculateYears(new Date(1990, 1, 1));
+};
+
+const calculateCareerAge = () => {
+  return calculateYears(new Date(2016, 1, 1));
+};
+
 export default {
   name: 'App',
   components: {
@@ -44,9 +64,17 @@ export default {
     const isTerminalView = ref(true);
     const buttonIcon = ref('');
     const commands = {
-      about: 'qwe',
-      career: '',
+      about: `A ${calculateAge()} years old software developer from Hungary. Basically interested in any topic, ranging from programming through cooking to psychology. When not coding, he's either watching random animal videos, gaming, having a drink with friends, or watching sports.`,
+      career: `
+        <div>${calculateCareerAge()} years of IT experience (in order) - in <strong>languages</strong>: C#, JavaScript, Python, MSSQL, PostgreSQL; in <strong>frameworks</strong>: ASP .NET, React, Django, (minimal) Vue. Mainly have worked with REST APIs, SOAP services, GitHub/GitLab, Jenkins pipelines, MVC pattern, xUnit, Visual Studio, VSCode, Vim, Windows, Linux. <i>(For more information, visit my Links)</i></div>
+        <br/>
+        <div>Open source projects:</div>
+        <ul class="graphical-ul">
+          <li><a href="https://github.com/IFRCGo/go-api/" target="_blank">IFRC GO Backend (Django)</a></li>
+          <li><a href="https://github.com/IFRCGo/go-frontend/" target="_blank">IFRC GO Frontend (React)</a></li>
+        </ul>`,
       clear: '',
+      // Keeping these as arrays instead of objects/dictionaries as these are only used for rendering in loops
       help: [
         [COMMANDNAMES.about, 'Short and personal bio'],
         [COMMANDNAMES.career, 'High level overview of career path'],
@@ -55,8 +83,8 @@ export default {
         [COMMANDNAMES.links, 'List of personal profiles']
       ],
       links: [
-        ['github', 'https://github.com/GergiH/'],
-        ['linkedin', 'https://www.linkedin.com/in/gergi-hrv/']
+        [LINKNAMES.github, 'https://github.com/GergiH/'],
+        [LINKNAMES.linkedin, 'https://www.linkedin.com/in/gergi-hrv/']
       ]
     };
 

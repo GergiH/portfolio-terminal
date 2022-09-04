@@ -95,3 +95,8 @@
   -o-transition: all 0.6s ease;
   transition: all 0.6s ease;
 }
+
+.graphical-ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}

@@ -10,17 +10,25 @@
           </div>
           <div class="p-l-2 inline-block">
             <h3 class="section-header">Horváth Gergely Zsolt</h3>
-            Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet,
+            <div v-if="props.commands" v-html="props.commands.about"></div>
           </div>
         </div>
       </section>
       <section id="career">
-        <h2><a href="#career" :onclick="hideImage">Title Two</a></h2>
-        <div class="section-content"><p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, </p></div>
+        <h2><a href="#career" :onclick="hideImage">Career</a></h2>
+        <div class="section-content">
+          <div v-if="props.commands" v-html="props.commands.career"></div>
+        </div>
       </section>
       <section id="links">
-        <h2><a href="#links" :onclick="hideImage">Title Three</a></h2>
-        <div class="section-content"><p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, </p></div>
+        <h2><a href="#links" :onclick="hideImage">Links</a></h2>
+        <div class="section-content">
+          <ul class="graphical-ul" v-if="props.commands">
+            <li v-for="link in props.commands.links" :key="link[0]">
+              {{ link[0] }} - <a :href="link[1]" target="_blank">{{ link[1] }}</a>
+            </li>
+          </ul>
+        </div>
       </section>
     </div>
   </div>
@@ -32,10 +40,9 @@ import { ref, onMounted } from 'vue';
 export default {
   name: 'GraphicalView',
   props: {
-    commands: {},
-    COMMANDNAMES: {}
+    commands: {}
   },
-  setup() {
+  setup(props) {
     const aboutLink = ref(null);
     const isVisible = ref(true);
 
@@ -55,6 +62,7 @@ export default {
       aboutLink,
       hideImage,
       isVisible,
+      props,
       showImage
     };
   }
@@ -63,5 +71,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "~@/styles/GraphicalView.css"
+@import "~@/styles/GraphicalView.css";
 </style>
