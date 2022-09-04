@@ -27,37 +27,17 @@
 <script>
 import { ref, onMounted } from 'vue';
 
-const COMMANDNAMES = {
-  about: 'about',
-  career: 'career',
-  clear: 'clear',
-  help: 'help',
-  links: 'links'
-};
 const PROMPTPATH = '[visitor@gergih-portfolio] ';
 
 export default {
   name: 'TerminalView',
-  props: {},
-  setup() {
+  props: {
+    commands: {},
+    COMMANDNAMES: {}
+  },
+  setup(props) {
     const command = ref('');
     const lines = ref([]);
-    const commands = {
-      about: 'qwe',
-      career: '',
-      clear: '',
-      help: [
-        [COMMANDNAMES.about, 'Short and personal bio'],
-        [COMMANDNAMES.career, 'High level overview of career path'],
-        [COMMANDNAMES.clear, 'Clears the terminal'],
-        [COMMANDNAMES.help, 'Lists all available commands'],
-        [COMMANDNAMES.links, 'List of personal profiles']
-      ],
-      links: [
-        ['github', 'https://github.com/GergiH/'],
-        ['linkedin', 'https://www.linkedin.com/in/gergi-hrv/']
-      ]
-    };
     const prompt = ref(new Date().toLocaleString() + PROMPTPATH);
 
     const getPrompt = () => {
@@ -81,31 +61,31 @@ export default {
     };
 
     const handleInvalidCommand = () => {
-      return `'${command.value}' is an invalid command, use ${COMMANDNAMES.help} to get all valid commmands.`;
+      return `'${command.value}' is an invalid command, use ${props.COMMANDNAMES.help} to get all valid commmands.`;
     };
 
     const setContent = () => {
       lines.value.push(`<span class="keep-spaces">${getPrompt()}</span><span>${command.value}</span>`);
 
       switch (command.value) {
-        case COMMANDNAMES.about:
-          lines.value.push(commands.about);
+        case props.COMMANDNAMES.about:
+          lines.value.push(props.commands.about);
           break;
-        case COMMANDNAMES.career:
-          lines.value.push(commands.career);
+        case props.COMMANDNAMES.career:
+          lines.value.push(props.commands.career);
           break;
-        case COMMANDNAMES.clear:
+        case props.COMMANDNAMES.clear:
           lines.value = [];
           // setInitialLines();
           break;
-        case COMMANDNAMES.help:
-          for (const description of commands.help)
+        case props.COMMANDNAMES.help:
+          for (const description of props.commands.help)
           {
             lines.value.push(`<li><span class="help-command">${description[0]}</span> - ${description[1]}</li>`);
           }
           break;
-        case COMMANDNAMES.links:
-          lines.value.push(commands.links);
+        case props.COMMANDNAMES.links:
+          lines.value.push(props.commands.links);
           break;
         case '':
         case undefined:
@@ -122,7 +102,6 @@ export default {
 
     return {
       command,
-      commands,
       getPrompt,
       handleCommand,
       lines,

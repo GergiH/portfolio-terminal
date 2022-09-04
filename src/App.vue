@@ -1,7 +1,7 @@
 <template>
   <HeaderPart />
-  <TerminalView v-if="isTerminalView" />
-  <GraphicalView v-if="!isTerminalView" />
+  <TerminalView v-if="isTerminalView" commands="commands" COMMANDNAMES="COMMANDNAMES" />
+  <GraphicalView v-if="!isTerminalView" commands="commands" COMMANDNAMES="COMMANDNAMES" />
 
   <button class="layout-switcher" :onclick="toggleView" v-html="buttonIcon" />
 </template>
@@ -11,6 +11,14 @@ import { ref } from 'vue';
 import HeaderPart from './components/HeaderPart.vue';
 import GraphicalView from './components/GraphicalView.vue';
 import TerminalView from './components/TerminalView.vue';
+
+const COMMANDNAMES = {
+  about: 'about',
+  career: 'career',
+  clear: 'clear',
+  help: 'help',
+  links: 'links'
+};
 
 export default {
   name: 'App',
@@ -22,6 +30,22 @@ export default {
   setup() {
     const isTerminalView = ref(true);
     const buttonIcon = ref('');
+    const commands = {
+      about: 'qwe',
+      career: '',
+      clear: '',
+      help: [
+        [COMMANDNAMES.about, 'Short and personal bio'],
+        [COMMANDNAMES.career, 'High level overview of career path'],
+        [COMMANDNAMES.clear, 'Clears the terminal'],
+        [COMMANDNAMES.help, 'Lists all available commands'],
+        [COMMANDNAMES.links, 'List of personal profiles']
+      ],
+      links: [
+        ['github', 'https://github.com/GergiH/'],
+        ['linkedin', 'https://www.linkedin.com/in/gergi-hrv/']
+      ]
+    };
 
     const toggleView = () => {
       isTerminalView.value = !isTerminalView.value;
@@ -40,6 +64,7 @@ export default {
 
     return {
       buttonIcon,
+      commands,
       isTerminalView,
       toggleView
     };
