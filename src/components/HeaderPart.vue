@@ -44,7 +44,7 @@ img {
 .image-container {
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 4px 4px 14px -2px #7a7a7a;
+  box-shadow: 4px 4px 10px -2px #7a7a7a;
   left: 40px;
   padding: 6px;
   position: absolute;

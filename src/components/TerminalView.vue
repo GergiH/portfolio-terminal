@@ -16,8 +16,10 @@
         <li v-for="(line, index) in lines" :key="line + index" v-html="line" />
       </ul>
 
-      <div id="prompt">{{ prompt }}</div>
-      <input id="command-line" v-model="command" @keyup.enter="handleCommand" autofocus />
+      <div class="command-line-container">
+        <div id="prompt" class="keep-spaces">{{ prompt }}</div>
+        <input id="command-line" v-model="command" @keyup.enter="handleCommand" autofocus />
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +34,7 @@ const COMMANDNAMES = {
   help: 'help',
   links: 'links'
 };
+const PROMPTPATH = '[visitor@gergih-portfolio] ';
 
 export default {
   name: 'TerminalView',
@@ -39,8 +42,6 @@ export default {
   setup() {
     const command = ref('');
     const lines = ref([]);
-    const prompt = `${new Date().toLocaleString()} - [visitor@gergih-portfolio] `;
-
     const commands = {
       about: 'qwe',
       career: '',
@@ -57,13 +58,16 @@ export default {
         ['linkedin', 'https://www.linkedin.com/in/gergi-hrv/']
       ]
     };
+    const prompt = ref(new Date().toLocaleString() + PROMPTPATH);
+
+    const getPrompt = () => {
+      return new Date().toLocaleString() + PROMPTPATH;
+    };
 
     const handleCommand = () => {
       setContent();
-
+      prompt.value = getPrompt();
       command.value = "";
-
-      return;
     };
 
     const handleInvalidCommand = () => {
@@ -71,7 +75,7 @@ export default {
     };
 
     const setContent = () => {
-      lines.value.push(`<span class="keep-spaces">${prompt} ${command.value}</span>`);
+      lines.value.push(`<span class="keep-spaces">${getPrompt()}</span><span>${command.value}</span>`);
 
       switch (command.value) {
         case COMMANDNAMES.about:
@@ -104,6 +108,7 @@ export default {
     return {
       command,
       commands,
+      getPrompt,
       handleCommand,
       lines,
       prompt
@@ -121,7 +126,7 @@ ul {
 }
 
 textarea:focus, input:focus{
-    outline: none;
+  outline: none;
 }
 
 #terminal-window :deep(.help-command) {
@@ -130,13 +135,15 @@ textarea:focus, input:focus{
 
 #terminal-window {
   background: #191323;
-  border-radius: 10px 10px 0 0;
+  border: 1px solid #000000;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 0px 10px 0px #242424;
   color: #cccccc;
-  font-family: Hack, "Cascadia Code", Consolas, "SF Mono", "DejaVu Sans Mono", monospace;
+  font-family: "Roboto Mono", "Ubuntu Mono", "Fira Code", "Cascadia Code", Consolas, "SF Mono", "DejaVu Sans Mono", monospace;
   height: 400px;
   margin: auto;
   text-align: left;
-  width: 900px;
+  width: 800px;
 }
 
 #prompt {
@@ -145,31 +152,31 @@ textarea:focus, input:focus{
   font-family: inherit;
   margin: 0;
   padding: 0;
-  width: 49%;
 }
 
 #command-line {
   color: #f9e46b;
   background: #191323;
   border: 0px;
-  display: inline-block;
+  flex: 2;
   font-family: inherit;
   overflow: hidden;
   margin: 0;
   padding: 0;
-  width: 50%;
   -webkit-appearance: none;
 }
 
 #terminal-window > .top {
-    background: #E8E6E8;
-    border-radius: 5px 5px 0 0;
-    color: black;
-    padding: 5px;
+  background: #3e4045;
+  border: 1px solid #787a7d;
+  border-bottom-color: #000000;
+  border-radius: 5px 5px 0 0;
+  color: #fcfcfd;
+  padding: 5px;
 }
 
 #terminal-window > .top > .title {
-    text-align: center;
+  text-align: center;
 }
 
 #terminal-window > .body {
@@ -178,7 +185,8 @@ textarea:focus, input:focus{
 }
 
 .btns {
-    position: absolute;
+  padding-top: 1px;
+  position: absolute;
 }
 
 .circle {
@@ -201,5 +209,9 @@ textarea:focus, input:focus{
 
 .yellow {
   background: #F5C04F; border-color: #D6A13D;
+}
+
+.command-line-container {
+  display: flex;
 }
 </style>

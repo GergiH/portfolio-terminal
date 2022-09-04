@@ -24,7 +24,6 @@ export default {
     const buttonIcon = ref('');
 
     const toggleView = () => {
-      console.log(isTerminalView.value);
       isTerminalView.value = !isTerminalView.value;
       handleButtonIcon();
     };
@@ -50,11 +49,13 @@ export default {
 
 <style>
 html {
-  background: #f7f7f7;
+  background: rgb(200,200,200);
+  background: linear-gradient(0deg, rgba(200,200,200,1) 0%, rgba(247,247,247,1) 100%);
+  height: 100%;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Rubik, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
@@ -69,7 +70,7 @@ html {
 
 button {
   backface-visibility: hidden;
-  background-color: #405cf5;
+  background-color: #ab98dd;
   border-radius: 6px;
   border-width: 0;
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
