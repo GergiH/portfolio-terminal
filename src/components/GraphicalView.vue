@@ -5,13 +5,14 @@
         <h2><a ref="aboutLink" href="#about" :onclick="showImage">About</a></h2>
 
         <div class="section-content">
-        <div class="inline-block" v-if="isVisible">
-          <img class="portrait-image portrait-image--small" src="~@/assets/portrait.jpg" />
+          <div class="inline-block" v-if="isVisible">
+            <img class="portrait-image portrait-image--small" src="~@/assets/portrait.jpg" />
+          </div>
+          <div class="p-l-2 inline-block">
+            <h3 class="section-header">Horváth Gergely Zsolt</h3>
+            Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet,
+          </div>
         </div>
-        <div class="inline-block">
-          Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, 
-        </div>
-      </div>
       </section>
       <section id="career">
         <h2><a href="#career" :onclick="hideImage">Title Two</a></h2>
