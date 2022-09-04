@@ -29,6 +29,10 @@ import { ref, onMounted } from 'vue';
 
 const PROMPTPATH = '[visitor@gergih-portfolio] ';
 
+const convertDateToString = (date) => {
+  return date.toISOString().slice(0, 19).replace("T", " ");
+};
+
 export default {
   name: 'TerminalView',
   props: {
@@ -38,11 +42,11 @@ export default {
   setup(props) {
     const command = ref('');
     const lines = ref([]);
-    const prompt = ref(new Date().toLocaleString() + PROMPTPATH);
+    const prompt = ref(`${convertDateToString(new Date())} ${PROMPTPATH}`);
     const terminalBody = ref(null);
 
     const getPrompt = () => {
-      return new Date().toLocaleString() + PROMPTPATH;
+      return `${convertDateToString(new Date())} ${PROMPTPATH}`;
     };
 
     // First few lines, also explaining the 'help' command

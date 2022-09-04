@@ -5,8 +5,7 @@
   width: 800px;
 }
 
-.accordion
-{
+.accordion {
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0 3px 3px rgba(0,0,0,0.3);
@@ -18,8 +17,7 @@
   width: inherit;
 }
 
-.accordion section
-{
+.accordion section {
   position: relative;
   display: block;
   float: left;
@@ -37,8 +35,7 @@
   padding: 4px;
 }
 
-.accordion section h2
-{
+.accordion section h2 {
   position: absolute;
   font-size: 1em;
   font-weight: bold;
@@ -62,8 +59,7 @@
   transform: rotate(-90deg);
 }
 
-.accordion section h2 a
-{
+.accordion section h2 a {
   display: block;
   width: 100%;
   line-height: 2em;
@@ -72,16 +68,14 @@
   outline: 0 none;
 }
 
-.accordion section:target
-{
+.accordion section:target {
   width: 686px;
   padding: 0 1em;
   color: #3e4045;
   background-color: #fff;
 }
 
-.accordion section:target h2
-{
+.accordion section:target h2 {
   position: static;
   font-size: 1.3em;
   text-indent: 0;
@@ -94,8 +88,7 @@
 }
 
 .accordion section,
-.accordion section h2
-{
+.accordion section h2 {
   -webkit-transition: all 0.6s ease;
   -moz-transition: all 0.6s ease;
   -ms-transition: all 0.6s ease;
