@@ -101,9 +101,13 @@ export default {
     };
 
     const setInputtedCommands = (command) => {
-      if (inputtedCommands.value && !inputtedCommands.value.find(elem => elem === command)) {
-        inputtedCommands.value.push(command);
-      }
+      // If we don't want duplicated commands in the history, but in this case it's not always chronological,
+      // especially if some of the commands repeat
+      // if (inputtedCommands.value && !inputtedCommands.value.find(elem => elem === command)) {
+      //   inputtedCommands.value.push(command);
+      // }
+
+      inputtedCommands.value.push(command);
     };
 
     const handleButtonIcon = () => {

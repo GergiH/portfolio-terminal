@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, toRefs } from 'vue';
 
 const PROMPTPATH = '[visitor@gergih-portfolio] ';
 
@@ -57,7 +57,8 @@ export default {
     const prompt = ref(`${convertDateToString(new Date())} ${PROMPTPATH}`);
     const terminalBody = ref(null);
     const windowWidth = ref(window.innerWidth);
-    const cmdIdx = ref(0);
+    const cmdIdx = ref(-1);
+    const inputtedCommandsRef = toRefs(props).inputtedCommands;
 
     const getPrompt = () => {
       return `${convertDateToString(new Date())} ${PROMPTPATH}`;
@@ -107,18 +108,21 @@ export default {
     };
 
     const handleCommandHistory = (isDownArrow) => {
-      console.log(props.inputtedCommands.value);
-      if (isDownArrow) {
-        cmdIdx.value = cmdIdx.value === props.inputtedCommands.value.length - 1
-          ? cmdIdx.value
-          : cmdIdx.value++;
-      } else {
-        cmdIdx.value = cmdIdx.value === 0
-          ? cmdIdx.value
-          : cmdIdx.value--;
+      if (cmdIdx.value === -1) {
+        cmdIdx.value = inputtedCommandsRef.value.length;
       }
 
-      command.value = props.inputtedCommands.value[cmdIdx];
+      if (isDownArrow) {
+        cmdIdx.value = cmdIdx.value === inputtedCommandsRef.value.length - 1
+          ? cmdIdx.value = inputtedCommandsRef.value.length - 1
+          : cmdIdx.value += 1;
+      } else {
+        cmdIdx.value = cmdIdx.value === 0
+          ? cmdIdx.value = 0
+          : cmdIdx.value -= 1;
+      }
+
+      command.value = inputtedCommandsRef.value[cmdIdx.value];
     };
 
     const handleCommand = async () => {
@@ -209,6 +213,7 @@ export default {
       getPrompt,
       handleCommand,
       handleCommandHistory,
+      inputtedCommandsRef,
       lines,
       prompt,
       terminalBody,
