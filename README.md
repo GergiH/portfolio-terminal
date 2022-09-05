@@ -26,5 +26,11 @@ npm run lint
 git subtree push --prefix dist origin gh-pages
 ```
 
+If rejected:
+
+```
+git push origin <long-number>:gh-pages --force
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
