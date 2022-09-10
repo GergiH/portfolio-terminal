@@ -1,8 +1,10 @@
 <template>
-  <div class="header-bar">
+  <div
+    :class="{ 'header-bar': true, 'header-bar--inverted': !isTermView }"
+  >
     <div class="content">
-      <div class="personal-container">
-        <Transition>
+      <div :class="{ 'personal-container': true, 'personal-container--inverted': !isTermView }">
+        <Transition name="portrait">
           <img
             class="portrait-image"
             src="~@/assets/portrait.jpg"
@@ -11,11 +13,15 @@
         </Transition>
         <div class="personal-text-container">
           <h2>Gergely Horvath</h2>
-          <h3>Software Developer</h3>
+          <h3 :class="{ 'text-muted--inverted': !isTermView }">Software Developer</h3>
         </div>
       </div>
       <div class="layout-switcher-container">
-        <p class="text-lg text-muted mb-1">Change UI</p>
+        <p
+          :class="{ 'text-lg text-muted mb-1': true, 'text-muted--inverted': !isTermView }"
+        >
+          Change UI
+        </p>
         <div class="switch-container">
           <label class="switch">
             <input type="checkbox" v-model="isChecked" @change="handleUISwitch" />
