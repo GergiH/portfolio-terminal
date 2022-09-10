@@ -1,13 +1,58 @@
 <template>
-  <div class="header-background"></div>
+  <div
+    :class="{ 'header-bar': true, 'header-bar--inverted': !isTermView }"
+  >
+    <div class="content">
+      <div :class="{ 'personal-container': true, 'personal-container--inverted': !isTermView }">
+        <Transition name="portrait">
+          <img
+            class="portrait-image"
+            src="~@/assets/portrait.jpg"
+            v-if="isTermView"
+          />
+        </Transition>
+        <div class="personal-text-container">
+          <h2>Gergely Horvath</h2>
+          <h3 :class="{ 'text-muted--inverted': !isTermView }">Software Developer</h3>
+        </div>
+      </div>
+      <div class="layout-switcher-container">
+        <p
+          :class="{ 'text-lg text-muted mb-1': true, 'text-muted--inverted': !isTermView }"
+        >
+          Change UI
+        </p>
+        <div class="switch-container">
+          <label class="switch">
+            <input type="checkbox" v-model="isChecked" @change="handleUISwitch" />
+            <span class="slider round"></span>
+          </label>
+          <span class="text-lg">{{ !isChecked ? 'Terminal' : 'Visual' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { toRef, toRefs } from 'vue';
+
 export default {
   name: 'HeaderPart',
-  props: {},
-  setup() {
+  props: {
+    isTerminalView: Boolean
+  },
+  setup(props, context) {
+    const isTermView = toRefs(props).isTerminalView; // required for updating the value from props
+    const isChecked = toRef(isTermView); // required to be able to mutate the checkbox's value
+    const handleUISwitch = () => context.emit('toggleUiSwitch');
+    console.log(isTermView.value)
+    // console.log(isChecked.value)
+
     return {
+      handleUISwitch,
+      isChecked,
+      isTermView
     };
   }
 }
