@@ -42,8 +42,10 @@ textarea:focus, input:focus{
   border-radius: 5px 5px 0 0;
   box-shadow: 0px 0px 10px 0px #242424;
   color: #cccccc;
+  display: flex;
+  flex-direction: column;
   font-family: "Roboto Mono", "Ubuntu Mono", "Fira Code", "Cascadia Code", Consolas, "SF Mono", "DejaVu Sans Mono", monospace;
-  height: 400px;
+  height: 50vh;
   margin: auto;
   text-align: left;
   width: 70%;
@@ -83,7 +85,6 @@ textarea:focus, input:focus{
 }
 
 #terminal-window > .body {
-  height: 353px;
   overflow: auto;
   padding: 8px;
 }
@@ -121,12 +122,11 @@ textarea:focus, input:focus{
 
 @media (max-width: 820px) {
   #terminal-window {
-    height: 440px;
     width: 94%;
   }
 
   #terminal-window > .body {
-    height: 453px;
+    height: 42vh;
   }
 }
 

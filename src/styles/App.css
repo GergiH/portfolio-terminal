@@ -5,6 +5,7 @@ html {
 }
 
 body {
+  height: inherit;
   margin: 0px;
 }
 
@@ -25,12 +26,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   color: #1b1a20;
 }
 
 .background {
+  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   height: inherit;
@@ -203,7 +205,7 @@ input:checked + .slider:before {
 
 @media (max-width: 820px) {
   .main-content-container {
-    padding-top: 200px;
+    padding-top: 20px;
   }
 
   .portrait-image {

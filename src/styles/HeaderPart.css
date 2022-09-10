@@ -107,4 +107,8 @@ h3 {
   .personal-text-container {
     align-items: center;
   }
+
+  .header-bar {
+    position: unset;
+  }
 }
