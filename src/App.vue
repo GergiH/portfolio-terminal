@@ -7,20 +7,20 @@
   <div
     :class="{'background': true, 'terminalview-bg': isTerminalView, 'graphicalview-bg': !isTerminalView }"
   >
-    <div class="main-content-container">
-      <Transition name="terminalview">
-        <TerminalView
-          v-if="isTerminalView"
-          :commands="commands"
-          :command-names="COMMANDNAMES"
-          :inputted-commands="inputtedCommands"
-          @set-inputted-commands="setInputtedCommands"
-        />
-      </Transition>
-      <Transition name="graphicalview">
-        <GraphicalView v-if="!isTerminalView" :commands="commands" />
-      </Transition>
-    </div>
+  </div>
+  <div class="main-content-container">
+    <Transition name="terminalview">
+      <TerminalView
+        v-if="isTerminalView"
+        :commands="commands"
+        :command-names="COMMANDNAMES"
+        :inputted-commands="inputtedCommands"
+        @set-inputted-commands="setInputtedCommands"
+      />
+    </Transition>
+    <Transition name="graphicalview">
+      <GraphicalView v-if="!isTerminalView" :commands="commands" />
+    </Transition>
   </div>
 </template>
 

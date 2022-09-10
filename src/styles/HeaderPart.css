@@ -19,6 +19,7 @@ h3 {
   top: 0px;
   left: 0px;
   width: 100%;
+  z-index: 10;
 }
 
 .header-bar--inverted {
@@ -106,9 +107,5 @@ h3 {
 
   .personal-text-container {
     align-items: center;
-  }
-
-  .header-bar {
-    position: unset;
   }
 }
