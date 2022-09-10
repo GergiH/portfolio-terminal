@@ -22,7 +22,7 @@ body {
 }
 
 #app {
-  font-family: Inter, Rubik, Helvetica, Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;

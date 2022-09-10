@@ -44,7 +44,7 @@ textarea:focus, input:focus{
   color: #cccccc;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto Mono", "Ubuntu Mono", "Fira Code", "Cascadia Code", Consolas, "SF Mono", "DejaVu Sans Mono", monospace;
+  font-family: "JetBrains Mono", monospace;
   height: 400px;
   margin: auto;
   text-align: left;
