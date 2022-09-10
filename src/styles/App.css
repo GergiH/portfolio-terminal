@@ -4,12 +4,16 @@ html {
   height: 100%;
 }
 
-.p-l-1 {
+.pl-1 {
   padding-left: 6px;
 }
 
-.p-l-2 {
+.pl-2 {
   padding-left: 12px;
+}
+
+.mb-1 {
+  margin-bottom: 6px;
 }
 
 .section-header {
@@ -24,7 +28,10 @@ html {
   font-size: 14px;
   text-align: center;
   color: #1b1a20;
-  margin-top: 60px;
+}
+
+.main-content-container {
+  padding-top: 220px;
 }
 
 .inline-block {
@@ -92,10 +99,6 @@ button:focus {
 }
 
 /* Portrait image */
-.portrait-image {
-  border-radius: 50%;
-  width: inherit;
-}
 
 .portrait-image--small {
   width: 140px;
@@ -156,3 +159,64 @@ button:focus {
   display: block;
 }
 
+.text-lg {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.text-muted {
+  color: #887F96;
+}
+
+.switch {
+  display: inline-block;
+  height: 22px;
+  position: relative;
+  margin-right: 10px;
+  width: 65px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ffffff;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #8A64EC;
+  bottom: -6px;
+  content: "";
+  height: 34px;
+  left: -4px;
+  position: absolute;
+  transition: .4s;
+  width: 34px;
+}
+
+input:checked + .slider:before {
+  transform: translateX(34px);
+  background-color: #F18340;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switch-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}

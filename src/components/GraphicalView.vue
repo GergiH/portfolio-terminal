@@ -8,7 +8,7 @@
           <div class="inline-block" v-if="isVisible">
             <img class="portrait-image portrait-image--small" src="~@/assets/portrait.jpg" />
           </div>
-          <div class="p-l-2 inline-block">
+          <div class="pl-2 inline-block">
             <h3 class="section-header">Horváth Gergely Zsolt</h3>
             <div v-if="props.commands" v-html="props.commands.about"></div>
           </div>
