@@ -33,7 +33,6 @@ textarea:focus, input:focus{
 }
 
 #terminal-window :deep(.help-command) {
-  position: absolute;
   color: #ab98dd;
 }
 
