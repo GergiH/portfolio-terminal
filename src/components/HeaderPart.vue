@@ -11,7 +11,7 @@
             v-if="isTermView"
           />
         </Transition>
-        <div class="personal-text-container">
+        <div :class="{ 'personal-text-container': true, 'personal-text-container--inverted': !isTermView }">
           <h2>Gergely Horvath</h2>
           <h3 :class="{ 'text-muted--inverted': !isTermView }">Software Developer</h3>
         </div>
@@ -45,9 +45,8 @@ export default {
   setup(props, context) {
     const isTermView = toRefs(props).isTerminalView; // required for updating the value from props
     const isChecked = toRef(isTermView); // required to be able to mutate the checkbox's value
+
     const handleUISwitch = () => context.emit('toggleUiSwitch');
-    console.log(isTermView.value)
-    // console.log(isChecked.value)
 
     return {
       handleUISwitch,

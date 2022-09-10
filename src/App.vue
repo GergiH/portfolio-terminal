@@ -4,12 +4,12 @@
     @toggle-ui-switch="toggleUISwitch"
   />
 
-  <div
-    :class="{'background': true, 'terminalview-bg': isTerminalView, 'graphicalview-bg': !isTerminalView }"
-  >
-  </div>
+  <Transition name="background" mode="out-in">
+    <div v-if="isTerminalView" class="background terminalview-bg"></div>
+    <div v-else class="background graphicalview-bg"></div>
+  </Transition>
   <div class="main-content-container">
-    <Transition name="terminalview">
+    <Transition name="viewmode" mode="out-in">
       <TerminalView
         v-if="isTerminalView"
         :commands="commands"
@@ -17,9 +17,7 @@
         :inputted-commands="inputtedCommands"
         @set-inputted-commands="setInputtedCommands"
       />
-    </Transition>
-    <Transition name="graphicalview">
-      <GraphicalView v-if="!isTerminalView" :commands="commands" />
+      <GraphicalView v-else :commands="commands" />
     </Transition>
   </div>
 </template>
@@ -104,9 +102,7 @@ export default {
       inputtedCommands.value.push(command);
     };
 
-    const toggleUISwitch = () => {
-      isTerminalView.value = !isTerminalView.value
-    };
+    const toggleUISwitch = () => isTerminalView.value = !isTerminalView.value;
 
     return {
       buttonIcon,

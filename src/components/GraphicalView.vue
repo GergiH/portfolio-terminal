@@ -35,22 +35,13 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-
 export default {
   name: 'GraphicalView',
   props: {
     commands: {}
   },
   setup(props) {
-    const aboutLink = ref(null);
-
-    onMounted(() => {
-      setTimeout(() => aboutLink.value.click(), 500);
-    });
-
     return {
-      aboutLink,
       props
     };
   }

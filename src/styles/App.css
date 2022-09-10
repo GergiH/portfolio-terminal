@@ -1,6 +1,5 @@
 html {
-  background: rgb(200,200,200);
-  background: linear-gradient(0deg, rgba(200,200,200,1) 0%, rgba(247,247,247,1) 100%);
+  background: #242129;
   height: 100%;
 }
 
@@ -59,31 +58,30 @@ body {
   display: inline-block;
 }
 
-.terminalview-leave-active {
-  transition: opacity 0.4s ease;
+.viewmode-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.terminalview-enter-active {
-  transition: opacity 0.4s ease;
-  transition-delay: 0.4s;
+.viewmode-enter-active {
+  transition: opacity 0.5s ease;
+  transition-delay: 0.3s;
 }
 
-.terminalview-enter-from,
-.terminalview-leave-to {
+.viewmode-enter-from,
+.viewmode-leave-to {
   opacity: 0;
 }
 
-.graphicalview-leave-active {
+.background-leave-active {
   transition: opacity 0.4s ease;
 }
 
-.graphicalview-enter-active {
-  transition: opacity 0.4s ease;
-  transition-delay: 0.4s;
+.background-enter-active {
+  transition: opacity 0.5s ease;
 }
 
-.graphicalview-enter-from,
-.graphicalview-leave-to {
+.background-enter-from,
+.background-leave-to {
   opacity: 0;
 }
 
