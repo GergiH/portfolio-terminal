@@ -1,4 +1,4 @@
-# terminal-portfolio
+# terminal-portfolio - https://gergih.github.io/portfolio-terminal/
 
 ## Project setup
 ```
