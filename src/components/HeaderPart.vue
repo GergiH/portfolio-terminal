@@ -24,10 +24,16 @@
         </p>
         <div class="switch-container">
           <label class="switch">
-            <input type="checkbox" v-model="isChecked" @change="handleUISwitch" />
+            <input
+              type="checkbox"
+              v-model="isTermView"
+              @change="handleUISwitch"
+              :true-value="false"
+              :false-value="true"
+            />
             <span class="slider round"></span>
           </label>
-          <span class="text-lg">{{ !isChecked ? 'Terminal' : 'Visual' }}</span>
+          <span class="text-lg">{{ isTermView ? 'Terminal' : 'Visual' }}</span>
         </div>
       </div>
     </div>
@@ -35,7 +41,7 @@
 </template>
 
 <script>
-import { toRef, toRefs } from 'vue';
+import { toRefs } from 'vue';
 
 export default {
   name: 'HeaderPart',
@@ -44,13 +50,11 @@ export default {
   },
   setup(props, context) {
     const isTermView = toRefs(props).isTerminalView; // required for updating the value from props
-    const isChecked = toRef(isTermView); // required to be able to mutate the checkbox's value
 
     const handleUISwitch = () => context.emit('toggleUiSwitch');
 
     return {
       handleUISwitch,
-      isChecked,
       isTermView
     };
   }

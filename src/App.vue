@@ -64,7 +64,7 @@ export default {
     TerminalView
   },
   setup() {
-    const isTerminalView = ref(true);
+    const isTerminalView = ref(JSON.parse(localStorage.getItem('isTerminalView')) ?? true);
     const buttonIcon = ref('');
     const commands = {
       about: `A ${calculateAge()} years old software developer from Hungary. Basically interested in any topic, ranging from programming through cooking to psychology. When not coding, he's either watching random animal videos, gaming, having a drink with friends, or watching sports.`,
@@ -102,7 +102,10 @@ export default {
       inputtedCommands.value.push(command);
     };
 
-    const toggleUISwitch = () => isTerminalView.value = !isTerminalView.value;
+    const toggleUISwitch = () => {
+      isTerminalView.value = !isTerminalView.value;
+      localStorage.setItem('isTerminalView', isTerminalView.value);
+    };
 
     return {
       buttonIcon,
